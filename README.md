@@ -1,4 +1,4 @@
-# Elasticsearch Python Tutorial
+# Elasticsearch Workshop
 
 Welcome to the Elasticsearch workshop repository! This resource is designed to help you get better at Elasticsearch using the Python client. Inside, you'll find notebooks and slides to guide you through the learning process.
 
