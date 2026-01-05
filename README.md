@@ -16,13 +16,38 @@ Welcome to the Elasticsearch workshop repository! This resource is designed to h
     git clone https://github.com/vitezslavjira-ACE/ElasticSearch_Workshop
     ```
 
-2. Install the required dependencies (to a new venv):
+2. Create a virtual environment:
+
+    ```bash
+    py -m venv .venv
+    ```
+
+3. Activate the virtual environment:
+
+    ```powershell
+    .\.venv\Scripts\Activate.ps1
+    ```
+
+4. Install the required dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Open the notebooks in the `notebooks/` directory and start learning!
+5. Set up your Jupyter notebook environment:
+
+    This course uses Jupyter notebooks extensively. You can work with them in several ways:
+    
+    - **VS Code** (recommended): Install the following extensions:
+        - Python (by Microsoft)
+        - Jupyter (by Microsoft)
+        
+        VS Code will automatically detect your `.venv` environment. Just open a notebook file and select the Python interpreter from your virtual environment when prompted.
+    
+    - **JupyterLab**: Run `jupyter lab` in your activated virtual environment
+    - **Jupyter Notebook**: Run `jupyter notebook` in your activated virtual environment
+
+6. Open the notebooks in the `notebooks/` directory and start learning!
 
 ## Prerequisites
 
