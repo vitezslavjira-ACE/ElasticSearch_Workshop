@@ -1,30 +1,28 @@
 # Elasticsearch Workshop
 
-Welcome to the **Elasticsearch Workshop** repository!  
-This project is designed as a hands-on learning resource for working with **Elasticsearch using Python**.  
+Welcome to the **Elasticsearch Workshop** repository!
+This project is designed as a hands-on learning resource for working with **Elasticsearch using Python**.
 It contains Jupyter notebooks, datasets, and slides that guide you from basic concepts to more advanced use cases.
 
 ---
 
 ## Repository contents
 
-- `notebooks/` – Jupyter notebooks with practical Elasticsearch examples  
-- `slides/` – Presentation slides  
-- `data/` – Sample datasets used in the notebooks  
-- `requirements.txt` – Core project dependencies  
-- `requirements-ml.txt` – Machine learning dependencies  
+- `notebooks/` – Jupyter notebooks with practical Elasticsearch examples
+- `slides/` – Presentation slides
+- `data/` – Sample datasets used in the notebooks
+- `pyproject.toml` – Project configuration and dependencies (managed by `uv`)
 
 ---
 
 ## Prerequisites
 
-- Basic Python knowledge  
-- Familiarity with JSON and data structures  
-- **Elasticsearch** running locally or remotely  
+- Basic Python knowledge
+- Familiarity with JSON and data structures
+- [uv](https://docs.astral.sh/uv/) – fast Python package manager
+- **Elasticsearch** running locally or remotely
 
-### Running Elasticsearch locally (Docker)
-
-You need Docker Desktop installed. Then run:
+### Running Elasticsearch locally (Docker / Podman)
 
 ```bash
 docker run -d --name elasticsearch -p 9200:9200 \
@@ -35,14 +33,14 @@ docker run -d --name elasticsearch -p 9200:9200 \
   docker.elastic.co/elasticsearch/elasticsearch:8.15.0
 ```
 
-Elasticsearch will be available at:  
+Elasticsearch will be available at:
 `http://localhost:9200`
 
 ---
 
 ## Getting started
 
-### 1️⃣ Clone the repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/vitezslavjira-ACE/ElasticSearch_Workshop
@@ -51,68 +49,31 @@ cd ElasticSearch_Workshop
 
 ---
 
-### 2️⃣ Create a virtual environment
+### 2. Install dependencies
 
 ```bash
-py -m venv .venv
+uv sync
 ```
+
+This installs core dependencies and dev tools (JupyterLab, ipykernel).
+
+To also install machine learning dependencies (sentence-transformers):
+
+```bash
+uv sync --group ml
+```
+
+> ML dependencies are separated into a dedicated group to keep the base setup lightweight.
 
 ---
 
-### 3️⃣ Activate the virtual environment (Windows)
-
-```cmd
-.\.venv\Scripts\activate.bat
-```
-
-You should see:
-
-```text
-(.venv) C:\...\ElasticSearch_Workshop>
-```
-
----
-
-### 4️⃣ Upgrade installation tools
+### 3. Set up Jupyter kernel
 
 ```bash
-python -m pip install -U pip setuptools wheel
+uv run python -m ipykernel install --user --name es-workshop --display-name "ES Workshop (uv)"
 ```
 
-This step is **crucial**, especially when installing ML-related packages.
-
----
-
-### 5️⃣ Install core dependencies
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-These are the minimal dependencies required to run the workshop notebooks and API examples.
-
----
-
-### 6️⃣ Install machine learning dependencies
-
-Some notebooks use sentence embeddings and semantic search.
-
-```bash
-python -m pip install -r requirements-ml.txt
-```
-
-> ML dependencies are intentionally separated to keep the base setup lightweight and stable.
-
----
-
-### 7️⃣ Set up Jupyter kernel for the virtual environment
-
-```bash
-python -m pip install ipykernel
-python -m ipykernel install --user --name es-workshop --display-name "ES Workshop (.venv)"
-```
-
-This ensures that Jupyter notebooks always run using the correct virtual environment.
+This ensures that Jupyter notebooks run using the correct virtual environment.
 
 ---
 
@@ -126,26 +87,24 @@ Install the following extensions:
 
 Open the repository folder in VS Code, then:
 - open any notebook from `notebooks/`
-- select the **ES Workshop (.venv)** kernel if prompted
-
-VS Code will reuse this kernel for all notebooks in the project.
+- select the **ES Workshop (uv)** kernel if prompted
 
 ---
 
 ### Option B: JupyterLab
 
 ```bash
-jupyter lab
+uv run jupyter lab
 ```
 
-Then select the **ES Workshop (.venv)** kernel inside the notebook UI.
+Then select the **ES Workshop (uv)** kernel inside the notebook UI.
 
 ---
 
 ### Option C: Classic Jupyter Notebook
 
 ```bash
-jupyter notebook
+uv run jupyter notebook
 ```
 
 ---
@@ -169,10 +128,9 @@ You should see a path pointing to `.venv` and no import errors.
 
 ## Notes & best practices
 
-- Do **not** interrupt `pip install` when installing ML packages  
-- If something breaks badly, deleting `.venv` and recreating it is often faster than fixing it  
-- ML dependencies are intentionally not part of `requirements.txt`
+- If something breaks badly, removing `.venv` and running `uv sync` again is often faster than debugging
+- ML dependencies are intentionally in a separate group (`uv sync --group ml`)
 
 ---
 
-Happy learning, and enjoy your journey into Elasticsearch 🚀
+Happy learning, and enjoy your journey into Elasticsearch!
