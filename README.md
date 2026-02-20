@@ -22,6 +22,10 @@ It contains Jupyter notebooks, datasets, and slides that guide you from basic co
 - Familiarity with JSON and data structures  
 - **Elasticsearch** running locally or remotely  
 
+### Python version
+
+Recommended: Python 3.12.10. On newer Python versions (e.g. 3.14), you may hit installation issues with missing C++ libraries (for example around the `elasticsearch` package). Python 3.11 will likely work as well. The versions in `requirements.txt` and `requirements-ml.txt` are pinned to match the Elasticsearch version used in Docker, so the Python in your `.venv` needs to be compatible with those pinned packages.
+
 ### Running Elasticsearch locally (Docker)
 
 You need Docker Desktop installed. Then run:
@@ -164,6 +168,11 @@ print("Environment OK")
 ```
 
 You should see a path pointing to `.venv` and no import errors.
+
+Then use "Run All" (run all cells) in:
+- `notebooks/3_create_index.ipynb`
+- `notebooks/16_embeddings.ipynb`
+This should complete without any import-related errors.
 
 ---
 
